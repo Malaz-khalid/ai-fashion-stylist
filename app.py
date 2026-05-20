@@ -302,6 +302,83 @@ def fashion_analysis(text):
 
         style_scores["كيوت"] += 40
 
+# -----------------------
+# Men's style analysis
+# -----------------------
+if "man" in text:
+
+    # كاجوال رجالي
+    if any(w in text for w in [
+        "jeans",
+        "t-shirt",
+        "hoodie",
+        "sneakers"
+    ]):
+
+        style_scores["كاجوال"] += 4
+
+        points.append(
+            "إطلالة رجالية كاجوال عصرية"
+        )
+
+        improvements.append(
+            "إضافة ساعة أو حذاء مميز"
+        )
+
+    # رسمي
+    if any(w in text for w in [
+        "suit",
+        "tie",
+        "formal",
+        "blazer"
+    ]):
+
+        style_scores["أنيق"] += 5
+
+        points.append(
+            "إطلالة رجالية رسمية أنيقة"
+        )
+
+        improvements.append(
+            "تنسيق ربطة العنق مع الحذاء"
+        )
+
+    # رياضي
+    if any(w in text for w in [
+        "gym",
+        "sport",
+        "fitness",
+        "running"
+    ]):
+
+        style_scores["رياضي"] += 5
+
+        points.append(
+            "إطلالة رياضية عملية"
+        )
+
+        improvements.append(
+            "إضافة ألوان رياضية أكثر حيوية"
+        )
+
+    # ستريت ستايل
+    if any(w in text for w in [
+        "street",
+        "urban",
+        "oversized",
+        "jacket"
+    ]):
+
+        style_scores["ستريت ستايل"] += 5
+
+        points.append(
+            "إطلالة ستريت ستايل شبابية"
+        )
+
+        improvements.append(
+            "إضافة إكسسوارات شبابية"
+        )
+    
     # -----------------------
     # تحديد أفضل ستايل
     # -----------------------
