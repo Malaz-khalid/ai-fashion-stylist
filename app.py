@@ -163,7 +163,191 @@ STYLE_KEYWORDS = {
         "bright"
     ]
     }
+# -----------------------
+# 🔥 تحليل الموضة
+# -----------------------
+def fashion_analysis(text):
 
+    text = text.lower()
+
+    score = 7
+    style = "كاجوال"
+
+    points = []
+    improvements = []
+
+    # -----------------------
+    # style detection
+    # -----------------------
+    style_scores = {s: 0 for s in STYLE_KEYWORDS}
+
+    for s, keywords in STYLE_KEYWORDS.items():
+
+        for w in keywords:
+
+            if w in text:
+                style_scores[s] += 2
+
+    # -----------------------
+    # Cute detection
+    # -----------------------
+    if "little girl" in text:
+
+        style_scores["كيوت"] += 100
+
+        score = 10
+
+        points.append(
+            "إطلالة كيوت طفولية لطيفة"
+        )
+
+        improvements.append(
+            "إضافة ألوان مرحة أو إكسسوارات ناعمة"
+        )
+
+    # -----------------------
+    # Beach style
+    # -----------------------
+    if any(w in text for w in ["beach", "ocean", "sea"]):
+
+        style_scores["ستايل شاطئ"] += 4
+
+        score += 2
+
+        points.append(
+            "إطلالة مناسبة للأجواء الساحلية"
+        )
+
+        improvements.append(
+            "إضافة نظارة شمسية أو قبعة صيفية"
+        )
+
+    # -----------------------
+    # Street style
+    # -----------------------
+    if any(w in text for w in ["street", "walking"]):
+
+        style_scores["ستريت ستايل"] += 4
+
+        score += 2
+
+        points.append(
+            "إطلالة يومية مناسبة للخروج"
+        )
+
+        improvements.append(
+            "إضافة حقيبة أو جاكيت خفيف"
+        )
+
+    # -----------------------
+    # Elegant style
+    # -----------------------
+    if "dress" in text:
+
+        style_scores["أنيق"] += 5
+
+        score += 3
+
+        points.append(
+            "فستان أنيق ومميز"
+        )
+
+        improvements.append(
+            "إضافة حقيبة أو إكسسوارات أنيقة"
+        )
+
+    # -----------------------
+    # Colors
+    # -----------------------
+    if any(w in text for w in ["black", "white"]):
+
+        score += 2
+
+        points.append(
+            "ألوان كلاسيكية أنيقة"
+        )
+
+        improvements.append(
+            "إضافة لون قوي لكسر الحيادية"
+        )
+
+    # -----------------------
+    # gender hints
+    # -----------------------
+    if "woman" in text:
+
+        points.append(
+            "إطلالة نسائية"
+        )
+
+    elif "man" in text:
+
+        points.append(
+            "إطلالة رجالية أنيقة"
+        )
+
+    elif "girl" in text:
+
+        points.append(
+            "إطلالة طفلة / بنت صغيرة"
+        )
+
+        style_scores["كيوت"] += 50
+
+    elif "boy" in text:
+
+        points.append(
+            "إطلالة طفل / ولد صغير"
+        )
+
+        style_scores["كيوت"] += 40
+
+    # -----------------------
+    # تحديد أفضل ستايل
+    # -----------------------
+    best_style = max(
+        style_scores,
+        key=style_scores.get
+    )
+
+    if style_scores[best_style] > 0:
+
+        style = best_style
+
+    # -----------------------
+    # fallback
+    # -----------------------
+    if not points:
+
+        points.append(
+            "إطلالة عامة متوازنة"
+        )
+
+        improvements.append(
+            "إضافة لمسات عصرية أكثر"
+        )
+
+    # -----------------------
+    # Final AI Style
+    # -----------------------
+    points.append(
+        f"الستايل (AI): {style}"
+    )
+
+    return f"""
+التقييم: {min(score,10)}/10
+
+الستايل: {style}
+
+تحليل الإطلالة:
+{chr(10).join("✔ " + p for p in points)}
+
+نقاط التحسين:
+{chr(10).join("- " + i for i in improvements)}
+
+الانطباع العام:
+الإطلالة تعكس طابع {style} بشكل واضح مع تحليل ذكي متعدد المصادر
+"""
 # -----------------------
 # 🔥 تحليل الموضة
 # -----------------------
@@ -193,11 +377,11 @@ def fashion_analysis(text):
 
     # gender hints
     if "woman" in text:
-        points.append("إطلالة نسائية")
+        points.append(" إطلالة نسائية")
     elif "man" in text:
         points.append(" إطلالة رجالية أنيقة")
     elif "girl" in text:
-        points.append("إطلالة طفلة / بنت صغيرة")
+        points.append("إطلالة كيوت / أمورة صغيرة")
         style = "كيوت"
         score = 10  # زي ما طلبتي
 
