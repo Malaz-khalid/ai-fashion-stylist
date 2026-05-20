@@ -171,7 +171,7 @@ def fashion_analysis(text):
 
     text = text.lower()
 
-    score = 6
+    score = 7
     style = "كاجوال"
 
     points = []
@@ -195,7 +195,7 @@ def fashion_analysis(text):
     if "woman" in text:
         points.append("إطلالة نسائية")
     elif "man" in text:
-        points.append("إطلالة رجالية")
+        points.append(" إطلالة رجالية أنيقة")
     elif "girl" in text:
         points.append("إطلالة طفلة / بنت صغيرة")
         style = "كيوت"
@@ -203,7 +203,7 @@ def fashion_analysis(text):
 
     # dress boost
     if "dress" in text:
-        style = "إطلالة أنيقة"
+        style = "إطلالة انثويه أنيقة"
         score += 2
 
     if not points:
@@ -220,7 +220,6 @@ def fashion_analysis(text):
 {chr(10).join("✔ " + p for p in points)}
 
 نقاط التحسين:
-- تحسين تنسيق الألوان
 - إضافة إكسسوارات بسيطة
 
 الانطباع العام:
