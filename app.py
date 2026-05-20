@@ -30,13 +30,139 @@ processor, model = load_model()
 # Style Keywords
 # -----------------------
 STYLE_KEYWORDS = {
-    "كاجوال": ["jeans", "t-shirt", "hoodie", "sneakers", "casual", "selfie"],
-    "أنيق": ["dress", "elegant", "formal", "fashion"],
-    "ستريت ستايل": ["street", "urban", "jacket", "oversized"],
-    "شاطئ": ["beach", "sea", "ocean", "summer"],
-    "كيوت": ["girl", "child", "cute", "baby", "smiling"],
-    "رياضي": ["sport", "gym", "running"]
-}
+
+    "كاجوال": [
+        "jeans",
+        "t-shirt",
+        "hoodie",
+        "sneakers",
+        "casual",
+        "selfie",
+        "bathroom",
+        "mirror",
+        "daily",
+        "simple",
+        "relaxed",
+        "comfortable",
+        "shirt",
+        "pants"
+    ],
+
+    "أنيق": [
+        "dress",
+        "white dress",
+        "gown",
+        "fashion",
+        "formal",
+        "luxury",
+        "heels",
+        "elegant",
+        "stylish",
+        "chic",
+        "beautiful",
+        "party",
+        "wedding",
+        "makeup",
+        "jewelry"
+    ],
+
+    "ستريت ستايل": [
+        "street",
+        "urban",
+        "oversized",
+        "cool",
+        "modern",
+        "jacket",
+        "baggy",
+        "fashion week",
+        "hoodie",
+        "denim",
+        "sneaker",
+        "city",
+        "trendy"
+    ],
+
+    "ستايل شاطئ": [
+        "beach",
+        "ocean",
+        "sea",
+        "summer",
+        "vacation",
+        "sun",
+        "sand",
+        "bikini",
+        "resort",
+        "island",
+        "outdoor",
+        "coast"
+    ],
+
+    "كيوت": [
+        "little girl",
+        "child",
+        "kid",
+        "baby",
+        "cute",
+        "pink",
+        "smiling",
+        "soft colors",
+        "toy",
+        "small",
+        "happy",
+        "playful",
+        "bow",
+        "cartoon"
+    ],
+
+    "رياضي": [
+        "sport",
+        "gym",
+        "fitness",
+        "running",
+        "workout",
+        "training",
+        "athletic",
+        "sportswear",
+        "jogging",
+        "active",
+        "nike",
+        "adidas"
+    ],
+
+    "محجبات": [
+        "hijab",
+        "head scarf",
+        "abaya",
+        "modest",
+        "veil",
+        "long dress",
+        "covered",
+        "muslim fashion"
+    ],
+
+    "شتوي": [
+        "coat",
+        "winter",
+        "jacket",
+        "boots",
+        "scarf",
+        "cold",
+        "sweater",
+        "knit",
+        "layered"
+    ],
+
+    "صيفي": [
+        "shorts",
+        "summer",
+        "light colors",
+        "sleeveless",
+        "sunny",
+        "tank top",
+        "floral",
+        "bright"
+    ]
+    }
 
 # -----------------------
 # 🔥 تحليل الموضة
