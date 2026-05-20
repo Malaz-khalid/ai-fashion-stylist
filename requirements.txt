@@ -1,5 +1,0 @@
-streamlit
-Transformers 
-torch
-pillow
-
