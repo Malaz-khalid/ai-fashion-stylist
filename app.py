@@ -202,7 +202,7 @@ def fashion_analysis(text):
         )
 
         improvements.append(
-            "إضافة ألوان مرحة أو إكسسوارات ناعمة"
+            "لوك جميل ولطيف "
         )
 
     # -----------------------
@@ -253,7 +253,7 @@ def fashion_analysis(text):
         )
 
         improvements.append(
-            "إضافة حقيبة أو إكسسوارات أنيقة"
+            "إطلالة انثويه راقية وهادية وواثقة "
         )
 
     # -----------------------
@@ -277,7 +277,7 @@ def fashion_analysis(text):
     if "woman" in text:
 
         points.append(
-            "إطلالة نسائية"
+            "إطلالة نسائية جميلة "
         )
 
     elif "man" in text:
@@ -289,7 +289,7 @@ def fashion_analysis(text):
     elif "girl" in text:
 
         points.append(
-            "إطلالة طفلة / بنت صغيرة"
+           " إطلالة بنوتة كيوتة وامورة "
         )
 
         style_scores["كيوت"] += 50
@@ -297,7 +297,7 @@ def fashion_analysis(text):
     elif "boy" in text:
 
         points.append(
-            "إطلالة طفل / ولد صغير"
+            "إطلالة كيوت ، بيبي "
         )
 
         style_scores["كيوت"] += 40
@@ -347,67 +347,6 @@ def fashion_analysis(text):
 
 الانطباع العام:
 الإطلالة تعكس طابع {style} بشكل واضح مع تحليل ذكي متعدد المصادر
-"""
-# -----------------------
-# 🔥 تحليل الموضة
-# -----------------------
-def fashion_analysis(text):
-
-    text = text.lower()
-
-    score = 7
-    style = "كاجوال"
-
-    points = []
-    improvements = []
-
-    # style detection
-    style_scores = {s: 0 for s in STYLE_KEYWORDS}
-
-    for s, keywords in STYLE_KEYWORDS.items():
-        for w in keywords:
-            if w in text:
-                style_scores[s] += 2
-
-    best_style = max(style_scores, key=style_scores.get)
-
-    if style_scores[best_style] > 0:
-        style = best_style
-        score += style_scores[best_style] // 2
-
-    # gender hints
-    if "woman" in text:
-        points.append(" إطلالة نسائية")
-    elif "man" in text:
-        points.append(" إطلالة رجالية أنيقة")
-    elif "girl" in text:
-        points.append("إطلالة كيوت / أمورة صغيرة")
-        style = "كيوت"
-        score = 10  # زي ما طلبتي
-
-    # dress boost
-    if "dress" in text:
-        style = "إطلالة انثويه أنيقة"
-        score += 2
-
-    if not points:
-        points.append("إطلالة عامة متوازنة")
-
-    points.append(f"الستايل (AI): {style}")
-
-    return f"""
-التقييم: {min(score,10)}/10
-
-الستايل: {style}
-
-تحليل الإطلالة:
-{chr(10).join("✔ " + p for p in points)}
-
-نقاط التحسين:
-- إضافة إكسسوارات بسيطة
-
-الانطباع العام:
-الإطلالة تعكس طابع {style} بشكل واضح
 """
 
 # -----------------------
