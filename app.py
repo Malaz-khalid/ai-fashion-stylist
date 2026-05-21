@@ -8,8 +8,8 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 # -----------------------
 st.set_page_config(page_title="AI Fashion Stylist", layout="centered")
 
-st.title("🖤 AI Fashion Stylist (Stable Smart Version)")
-st.write("ذكاء حقيقي + استقرار بدون كراش")
+st.title("🖤 AI Fashion Stylist ")
+st.write("تحليل استايلك")
 
 # -----------------------
 # تحميل النموذج (محمي من التكرار)
