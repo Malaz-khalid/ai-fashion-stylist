@@ -19,10 +19,13 @@ def load_model():
     processor = BlipProcessor.from_pretrained(
         "Salesforce/blip-image-captioning-base"
     )
+
     model = BlipForConditionalGeneration.from_pretrained(
         "Salesforce/blip-image-captioning-base"
     )
+
     return processor, model
+
 
 processor, model = load_model()
 
@@ -63,7 +66,10 @@ STYLE_KEYWORDS = {
         "party",
         "wedding",
         "makeup",
-        "jewelry"
+        "jewelry",
+        "suit",
+        "tie",
+        "blazer"
     ],
 
     "ستريت ستايل": [
@@ -90,7 +96,6 @@ STYLE_KEYWORDS = {
         "vacation",
         "sun",
         "sand",
-        "bikini",
         "resort",
         "island",
         "outdoor",
@@ -111,7 +116,8 @@ STYLE_KEYWORDS = {
         "happy",
         "playful",
         "bow",
-        "cartoon"
+        "cartoon",
+        "little boy"
     ],
 
     "رياضي": [
@@ -162,7 +168,8 @@ STYLE_KEYWORDS = {
         "floral",
         "bright"
     ]
-    }
+}
+
 # -----------------------
 # 🔥 تحليل الموضة
 # -----------------------
@@ -202,7 +209,7 @@ def fashion_analysis(text):
         )
 
         improvements.append(
-            "لوك جميل ولطيف "
+            "لوك جميل ولطيف"
         )
 
     # -----------------------
@@ -253,7 +260,7 @@ def fashion_analysis(text):
         )
 
         improvements.append(
-            "إطلالة بنوتة راقية وهادية وواثقة "
+            "إطلالة بنوتة راقية وهادية وواثقة"
         )
 
     # -----------------------
@@ -277,7 +284,7 @@ def fashion_analysis(text):
     if "woman" in text:
 
         points.append(
-            "إطلالة نسائية جميلة "
+            "إطلالة نسائية جميلة"
         )
 
     elif "man" in text:
@@ -289,7 +296,7 @@ def fashion_analysis(text):
     elif "girl" in text:
 
         points.append(
-           " إطلالة بنوتة كيوتة وامورة "
+            "إطلالة بنوتة كيوتة وامورة"
         )
 
         style_scores["كيوت"] += 50
@@ -297,12 +304,108 @@ def fashion_analysis(text):
     elif "boy" in text:
 
         points.append(
-            "إطلالة كيوت ، بيبي "
+            "إطلالة كيوت ، بيبي"
         )
 
         style_scores["كيوت"] += 40
 
-    
+    # -----------------------
+    # Men's style analysis
+    # -----------------------
+    if "man" in text:
+
+        # كاجوال رجالي
+        if any(w in text for w in [
+            "jeans",
+            "t-shirt",
+            "hoodie",
+            "sneakers",
+            "shirt"
+        ]):
+
+            style_scores["كاجوال"] += 5
+
+            points.append(
+                "إطلالة رجالية كاجوال عصرية"
+            )
+
+            improvements.append(
+                "إضافة ساعة أو حذاء مميز"
+            )
+
+        # رسمي
+        if any(w in text for w in [
+            "suit",
+            "tie",
+            "formal",
+            "blazer"
+        ]):
+
+            style_scores["أنيق"] += 6
+
+            points.append(
+                "إطلالة رجالية رسمية وفخمة"
+            )
+
+            improvements.append(
+                "تنسيق الحذاء مع الإطلالة"
+            )
+
+        # رياضي
+        if any(w in text for w in [
+            "gym",
+            "sport",
+            "fitness",
+            "running",
+            "sportswear"
+        ]):
+
+            style_scores["رياضي"] += 6
+
+            points.append(
+                "إطلالة رياضية شبابية"
+            )
+
+            improvements.append(
+                "إضافة ألوان رياضية أكثر حيوية"
+            )
+
+        # ستريت ستايل
+        if any(w in text for w in [
+            "street",
+            "urban",
+            "oversized",
+            "jacket",
+            "hoodie"
+        ]):
+
+            style_scores["ستريت ستايل"] += 6
+
+            points.append(
+                "إطلالة ستريت ستايل شبابية"
+            )
+
+            improvements.append(
+                "إضافة أكسسوار شبابي مميز"
+            )
+
+        # شاطئ
+        if any(w in text for w in [
+            "beach",
+            "ocean",
+            "sea"
+        ]):
+
+            style_scores["ستايل شاطئ"] += 5
+
+            points.append(
+                "إطلالة صيفية مريحة"
+            )
+
+            improvements.append(
+                "إضافة نظارة شمسية عصرية"
+            )
+
     # -----------------------
     # تحديد أفضل ستايل
     # -----------------------
@@ -356,24 +459,39 @@ def fashion_analysis(text):
 def safe_caption(image):
 
     try:
+
         image = image.convert("RGB")
 
-        inputs = processor(images=image, return_tensors="pt")
+        inputs = processor(
+            images=image,
+            return_tensors="pt"
+        )
 
         with torch.no_grad():
-            out = model.generate(**inputs, max_new_tokens=40)
 
-        caption = processor.decode(out[0], skip_special_tokens=True)
+            out = model.generate(
+                **inputs,
+                max_new_tokens=40
+            )
+
+        caption = processor.decode(
+            out[0],
+            skip_special_tokens=True
+        )
 
         return caption
 
     except Exception as e:
+
         return "a person wearing casual outfit"
 
 # -----------------------
 # Upload
 # -----------------------
-uploaded_file = st.file_uploader("ارفع صورة", type=["jpg", "png", "jpeg"])
+uploaded_file = st.file_uploader(
+    "ارفع صورة",
+    type=["jpg", "png", "jpeg"]
+)
 
 if uploaded_file:
 
@@ -385,10 +503,10 @@ if uploaded_file:
 
         with st.spinner("جاري التحليل الذكي..."):
 
-            # 🔥 AI caption (stable)
+            # AI Caption
             description = safe_caption(image)
 
-            # 🔥 fashion analysis
+            # Fashion Analysis
             result = fashion_analysis(description)
 
             st.subheader("📌 وصف الصورة (AI):")
