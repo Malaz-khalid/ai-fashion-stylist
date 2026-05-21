@@ -51,7 +51,7 @@ STYLE_KEYWORDS = {
         "pants"
     ],
 
-    "أنيق": [
+    "فورمال": [
         "dress",
         "white dress",
         "gown",
@@ -177,7 +177,7 @@ def fashion_analysis(text):
 
     text = text.lower()
 
-    score = 7
+    score = 8
     style = "كاجوال"
 
     points = []
@@ -243,7 +243,7 @@ def fashion_analysis(text):
         )
 
         improvements.append(
-            "إضافة حقيبة أو جاكيت خفيف"
+            "إضافة نظارة"
         )
 
     # -----------------------
