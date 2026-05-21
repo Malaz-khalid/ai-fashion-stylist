@@ -251,7 +251,7 @@ def fashion_analysis(text):
     # -----------------------
     if "dress" in text:
 
-        style_scores["أنيق"] += 5
+        style_scores["فورمال"] += 5
 
         score += 3
 
@@ -276,6 +276,129 @@ def fashion_analysis(text):
 
         improvements.append(
             "إضافة لون قوي لكسر الحيادية"
+        )
+
+    # -----------------------
+    # More color analysis
+    # -----------------------
+
+    # الأحمر
+    if "red" in text:
+
+        score += 2
+
+        points.append(
+            "اللون الأحمر يعطي الإطلالة طاقة وجاذبية"
+        )
+
+        improvements.append(
+            "تنسيق الإكسسوارات بألوان هادئة"
+        )
+
+    # الأزرق
+    if "blue" in text:
+
+        score += 2
+
+        points.append(
+            "الأزرق يعكس هدوء وأناقة"
+        )
+
+        improvements.append(
+            "إضافة تفاصيل عصرية لزيادة التميز"
+        )
+
+    # الوردي
+    if "pink" in text:
+
+        score += 2
+
+        style_scores["كيوت"] += 4
+
+        points.append(
+            "الوردي يعطي طابع كيوت وناعم"
+        )
+
+        improvements.append(
+            "إضافة أكسسوار بسيط وناعم"
+        )
+
+    # الأخضر
+    if "green" in text:
+
+        score += 2
+
+        points.append(
+            "الأخضر يعطي إحساس بالانتعاش والطبيعة"
+        )
+
+        improvements.append(
+            "إضافة درجات فاتحة لزيادة الحيوية"
+        )
+
+    # الأصفر
+    if "yellow" in text:
+
+        score += 2
+
+        points.append(
+            "الأصفر يعطي طاقة وإشراقة"
+        )
+
+        improvements.append(
+            "موازنة الألوان بإكسسوارات هادئة"
+        )
+
+    # البنفسجي
+    if "purple" in text:
+
+        score += 2
+
+        points.append(
+            "البنفسجي يعكس الفخامة والغموض"
+        )
+
+        improvements.append(
+            "إضافة تفاصيل أنيقة بسيطة"
+        )
+
+    # البني
+    if "brown" in text:
+
+        score += 1
+
+        points.append(
+            "البني يعطي طابع دافئ وكلاسيكي"
+        )
+
+        improvements.append(
+            "إضافة لون فاتح لكسر الهدوء"
+        )
+
+    # الرمادي
+    if "gray" in text or "grey" in text:
+
+        score += 1
+
+        points.append(
+            "الرمادي يعكس أناقة هادئة"
+        )
+
+        improvements.append(
+            "إضافة لون قوي لإبراز الإطلالة"
+        )
+
+    # البرتقالي
+    if "orange" in text:
+
+        score += 2
+
+        points.append(
+            "البرتقالي يعطي روح مرحة وعصرية"
+        )
+
+        improvements.append(
+            "تنسيق الألوان بشكل متوازن"
         )
 
     # -----------------------
@@ -341,7 +464,7 @@ def fashion_analysis(text):
             "blazer"
         ]):
 
-            style_scores["أنيق"] += 6
+            style_scores["فورمال"] += 6
 
             points.append(
                 "إطلالة رجالية رسمية وفخمة"
